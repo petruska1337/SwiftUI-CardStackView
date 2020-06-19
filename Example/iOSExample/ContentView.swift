@@ -173,6 +173,32 @@ struct ReloadCards: View {
   }
 }
 
+struct SwipeSkip: View {
+  @State var data: [Person] = Person.mock
+
+  var body: some View {
+    CardStack(
+      direction: LeftRight.direction,
+      data: data,
+      onSwipe: { card, direction in
+        print("Swiped \(card.name) to \(direction)")
+      },
+      content: { person, _, _ in
+        CardView(person: person)
+      }
+    )
+    .padding()
+    .scaledToFit()
+    .frame(alignment: .center)
+    .navigationBarTitle("Basic", displayMode: .inline)
+      .navigationBarItems(trailing: HStack {
+        Button(action: {
+          withAnimation { self.data.removeFirst(1) }
+        }, label: { Text("Skip") })
+      })
+  }
+}
+
 struct CustomDirection: View {
   enum MyDirection {
     case up, down
@@ -253,6 +279,9 @@ struct ContentView: View {
         }
         NavigationLink(destination: ReloadCards()) {
           Text("Reload cards")
+        }
+        NavigationLink(destination: SwipeSkip()) {
+          Text("Programmatically swipe and skip")
         }
         NavigationLink(destination: CustomDirection()) {
           Text("Custom direction")
