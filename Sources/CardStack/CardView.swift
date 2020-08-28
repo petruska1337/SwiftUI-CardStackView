@@ -3,6 +3,7 @@ import SwiftUI
 struct CardView<Direction, Content: View>: View {
   @Environment(\.cardStackConfiguration) private var configuration: CardStackConfiguration
   @State private var translation: CGSize = .zero
+  @State private var zIndex: Double = 1
 
   private let direction: (Double) -> Direction?
   private let isOnTop: Bool
