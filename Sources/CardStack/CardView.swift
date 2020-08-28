@@ -29,6 +29,9 @@ struct CardView<Direction, Content: View>: View {
         .gesture(self.isOnTop ? self.dragGesture(geometry) : nil)
     }
     .transition(transition)
+    .zIndex(zIndex)
+    .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 1) { self.zIndex = 2 } }
+    .onDisappear { self.zIndex = 1 }
   }
 
   private func dragGesture(_ geometry: GeometryProxy) -> some Gesture {
