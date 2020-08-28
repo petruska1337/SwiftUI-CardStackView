@@ -31,8 +31,6 @@ struct CardView<Direction, Content: View>: View {
     }
     .transition(transition)
     .zIndex(zIndex)
-    .onAppear { DispatchQueue.main.asyncAfter(deadline: .now() + 1) { self.zIndex = 2 } }
-    .onDisappear { self.zIndex = 1 }
   }
 
   private func dragGesture(_ geometry: GeometryProxy) -> some Gesture {
@@ -43,8 +41,10 @@ struct CardView<Direction, Content: View>: View {
       .onEnded { value in
         self.translation = value.translation
         if let direction = self.swipeDirection(geometry) {
+          self.zIndex = 1
           withAnimation(self.configuration.animation) { self.onSwipe(direction) }
         } else {
+          self.zIndex = 2
           withAnimation { self.translation = .zero }
         }
       }
