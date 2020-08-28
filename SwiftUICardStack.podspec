@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/dadalar/SwiftUI-CardStackView'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Deniz Adalar' => 'me@dadalar.net' }
-  s.source           = { :git => 'https://github.com/dadalar/SwiftUI-CardStackView.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/petruska1337/SwiftUI-CardStackView.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '13.0'
   s.osx.deployment_target = '10.15'
