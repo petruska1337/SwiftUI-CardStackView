@@ -41,10 +41,10 @@ struct CardView<Direction, Content: View>: View {
       .onEnded { value in
         self.translation = value.translation
         if let direction = self.swipeDirection(geometry) {
-          self.zIndex = 1
+          self.zIndex = 2
           withAnimation(self.configuration.animation) { self.onSwipe(direction) }
         } else {
-          self.zIndex = 2
+          self.zIndex = 1
           withAnimation { self.translation = .zero }
         }
       }
